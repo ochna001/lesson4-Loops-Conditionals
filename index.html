@@ -1,10 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <title>Even or Odd Checker and Print Numbers</title>
+   <title>Even or Odd Checker</title>
+   <style>
+      body {
+         font-family: Arial, sans-serif;
+         background-color: #f0f8ff;
+         text-align: center;
+         padding-top: 50px;
+      }
+      .result {
+         font-size: 20px;
+         margin-top: 20px;
+         color: #333;
+      }
+      button {
+         padding: 10px 20px;
+         font-size: 18px;
+         background-color: #008cba;
+         color: white;
+         border: none;
+         border-radius: 5px;
+         cursor: pointer;
+      }
+      button:hover {
+         background-color: #005f5f;
+      }
+   </style>
 </head>
 <body>
    <h1>Even or Odd Checker</h1>
+   <p>Enter a number to check if it's even or odd:</p>
+   <input type="text" id="numberInput" />
+   <button onclick="checkNumber()">Check</button>
+
+   <div class="result">
+      <p id="inputDisplay"></p>
+      <p id="resultDisplay"></p>
+   </div>
+
    <script>
       function checkEvenOdd(number) {
          if (number % 2 === 0) {
@@ -15,22 +49,28 @@
       }
 
       function isValidInteger(input) {
+         // Check if the input is a valid number and is an integer
          return !isNaN(input) && Number.isInteger(Number(input));
       }
 
-      let number = prompt("Enter a number to check if it's even or odd:");
+      function checkNumber() {
+         let number = document.getElementById("numberInput").value;
 
-      // Check if the input is a valid integer
-      if (isValidInteger(number)) {
-         alert(checkEvenOdd(Number(number)));
-      } else {
-         alert("Please enter a valid integer.");
+         // Check if the input is a valid integer
+         if (isValidInteger(number)) {
+            let result = checkEvenOdd(Number(number));
+            document.getElementById("inputDisplay").innerText = "Input: " + number;
+            document.getElementById("resultDisplay").innerText = "Result: " + result;
+         } else {
+            document.getElementById("inputDisplay").innerText = "Input: " + number;
+            document.getElementById("resultDisplay").innerText = "Please enter a valid integer.";
+         }
       }
-
+      // Print numbers from 1 to 10 in the console
       console.log("Printing numbers from 1 to 10:");
-      for (let i = 1; i <= 10; i++) {
-         console.log(i);
-      }
+         for (let i = 1; i <= 10; i++) {
+            console.log(i);
+         }
    </script>
 </body>
 </html>
